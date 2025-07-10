@@ -16,7 +16,7 @@ const Home = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
   const [activeProductId, setActiveProductId] = useState(null);
-  
+
   const heroRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -127,15 +127,15 @@ const Home = () => {
 
   const handleSubmit = () => {
     let message = "Hello, I would like to place a bulk order:\n\n";
-    
+
     selectedProducts.forEach(id => {
       const product = products.find(p => p.id === id);
       const qty = quantity[id] || 1;
       message += `${product.name}: ${qty} units\n`;
     });
-    
+
     message += `\nPhone: ${phone}\nAddress: ${address}\n\nThank you!`;
-    
+
     const encodedMessage = encodeURIComponent(message);
     window.location.href = `https://wa.me/919787001188?text=${encodedMessage}`;
   };
@@ -148,7 +148,7 @@ const Home = () => {
             <h2 className="text-2xl font-bold text-white">Bulk Order Request</h2>
             <p className="text-emerald-100">Fill the details below for wholesale orders</p>
           </div>
-          
+
           <div className="p-6 max-h-[70vh] overflow-y-auto">
             <div className="mb-6">
               <h3 className="font-bold text-lg text-gray-800 mb-3">Select Products:</h3>
@@ -176,7 +176,7 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     {selectedProducts.includes(product.id) && (
                       <div className="flex items-center">
                         <span className="mr-2 text-gray-600">Quantity:</span>
@@ -194,7 +194,7 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Phone Number</label>
@@ -207,7 +207,7 @@ const Home = () => {
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Delivery Address</label>
                 <textarea
@@ -221,7 +221,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3">
             <button
               onClick={() => setBulkModalOpen(false)}
@@ -244,156 +244,156 @@ const Home = () => {
 
   // Kolam pattern component
   const KolamPattern = () => (
-  <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
-    {/* Floating spice particles with animation */}
-    <div className="absolute inset-0">
-      {[...Array(25)].map((_, i) => (
-        <div
-          key={`spice-particle-${i}`}
-          className="absolute animate-pulse"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
-            animationDelay: `${Math.random() * 2}s`
-          }}
-        >
-          <div 
-            className="w-2 h-2 rounded-full bg-gradient-to-r from-yellow-200 to-orange-200 opacity-30"
+    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+      {/* Floating spice particles with animation */}
+      <div className="absolute inset-0">
+        {[...Array(25)].map((_, i) => (
+          <div
+            key={`spice-particle-${i}`}
+            className="absolute animate-pulse"
             style={{
-              filter: 'blur(0.5px)',
-              boxShadow: '0 0 8px rgba(255, 165, 0, 0.3)'
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 2}s`
+            }}
+          >
+            <div
+              className="w-2 h-2 rounded-full bg-gradient-to-r from-yellow-200 to-orange-200 opacity-30"
+              style={{
+                filter: 'blur(0.5px)',
+                boxShadow: '0 0 8px rgba(255, 165, 0, 0.3)'
+              }}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Elegant spice leaf trails */}
+      <svg className="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 100 100" preserveAspectRatio="none">
+        {/* Top flowing trail */}
+        <path
+          d="M0,20 Q25,15 50,25 Q75,35 100,20"
+          stroke="url(#leafGradient)"
+          strokeWidth="0.3"
+          fill="none"
+          opacity="0.6"
+        />
+
+        {/* Bottom flowing trail */}
+        <path
+          d="M0,80 Q25,85 50,75 Q75,65 100,80"
+          stroke="url(#leafGradient)"
+          strokeWidth="0.3"
+          fill="none"
+          opacity="0.6"
+        />
+
+        {/* Vertical accent lines */}
+        <path
+          d="M15,0 Q20,50 15,100"
+          stroke="rgba(255,255,255,0.2)"
+          strokeWidth="0.2"
+          fill="none"
+        />
+        <path
+          d="M85,0 Q80,50 85,100"
+          stroke="rgba(255,255,255,0.2)"
+          strokeWidth="0.2"
+          fill="none"
+        />
+
+        <defs>
+          <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#ffd700" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0.4" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* Rotating spice elements */}
+      <div className="absolute top-1/4 left-1/4 opacity-20">
+        <div
+          className="w-16 h-16 animate-spin"
+          style={{ animation: 'spin 20s linear infinite' }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-200 to-orange-200 rounded-full opacity-40 blur-sm" />
+          <div className="absolute top-2 left-2 w-3 h-3 bg-white rounded-full opacity-60" />
+          <div className="absolute bottom-2 right-2 w-2 h-2 bg-yellow-200 rounded-full opacity-50" />
+        </div>
+      </div>
+
+      <div className="absolute top-3/4 right-1/4 opacity-20">
+        <div
+          className="w-12 h-12 animate-spin"
+          style={{ animation: 'spin 15s linear infinite reverse' }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-l from-yellow-200 to-amber-200 rounded-full opacity-40 blur-sm" />
+          <div className="absolute top-1 left-1 w-2 h-2 bg-white rounded-full opacity-60" />
+          <div className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-orange-200 rounded-full opacity-50" />
+        </div>
+      </div>
+
+      {/* Elegant corner decorations */}
+      <div className="absolute top-8 left-8 opacity-25">
+        <div className="relative w-20 h-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-white to-yellow-100 rounded-full opacity-30 blur-md" />
+          <div className="absolute top-4 left-4 w-12 h-12 border border-white rounded-full opacity-40" />
+          <div className="absolute top-6 left-6 w-8 h-8 bg-gradient-to-r from-amber-100 to-orange-100 rounded-full opacity-50" />
+        </div>
+      </div>
+
+      <div className="absolute top-8 right-8 opacity-25">
+        <div className="relative w-20 h-20">
+          <div className="absolute inset-0 bg-gradient-to-bl from-white to-yellow-100 rounded-full opacity-30 blur-md" />
+          <div className="absolute top-4 left-4 w-12 h-12 border border-white rounded-full opacity-40" />
+          <div className="absolute top-6 left-6 w-8 h-8 bg-gradient-to-l from-amber-100 to-orange-100 rounded-full opacity-50" />
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-8 opacity-25">
+        <div className="relative w-16 h-16">
+          <div className="absolute inset-0 bg-gradient-to-tr from-white to-yellow-100 rounded-full opacity-30 blur-md" />
+          <div className="absolute top-2 left-2 w-12 h-12 border border-white rounded-full opacity-40" />
+          <div className="absolute top-4 left-4 w-8 h-8 bg-gradient-to-r from-amber-100 to-orange-100 rounded-full opacity-50" />
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 right-8 opacity-25">
+        <div className="relative w-16 h-16">
+          <div className="absolute inset-0 bg-gradient-to-tl from-white to-yellow-100 rounded-full opacity-30 blur-md" />
+          <div className="absolute top-2 left-2 w-12 h-12 border border-white rounded-full opacity-40" />
+          <div className="absolute top-4 left-4 w-8 h-8 bg-gradient-to-l from-amber-100 to-orange-100 rounded-full opacity-50" />
+        </div>
+      </div>
+
+      {/* Subtle aromatic waves */}
+      <div className="absolute inset-0 opacity-10">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={`wave-${i}`}
+            className="absolute w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"
+            style={{
+              top: `${20 + i * 15}%`,
+              animation: `wave ${4 + i}s ease-in-out infinite`,
+              animationDelay: `${i * 0.5}s`
             }}
           />
-        </div>
-      ))}
-    </div>
-
-    {/* Elegant spice leaf trails */}
-    <svg className="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 100 100" preserveAspectRatio="none">
-      {/* Top flowing trail */}
-      <path 
-        d="M0,20 Q25,15 50,25 Q75,35 100,20" 
-        stroke="url(#leafGradient)" 
-        strokeWidth="0.3" 
-        fill="none"
-        opacity="0.6"
-      />
-      
-      {/* Bottom flowing trail */}
-      <path 
-        d="M0,80 Q25,85 50,75 Q75,65 100,80" 
-        stroke="url(#leafGradient)" 
-        strokeWidth="0.3" 
-        fill="none"
-        opacity="0.6"
-      />
-      
-      {/* Vertical accent lines */}
-      <path 
-        d="M15,0 Q20,50 15,100" 
-        stroke="rgba(255,255,255,0.2)" 
-        strokeWidth="0.2" 
-        fill="none"
-      />
-      <path 
-        d="M85,0 Q80,50 85,100" 
-        stroke="rgba(255,255,255,0.2)" 
-        strokeWidth="0.2" 
-        fill="none"
-      />
-      
-      <defs>
-        <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.4" />
-          <stop offset="50%" stopColor="#ffd700" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0.4" />
-        </linearGradient>
-      </defs>
-    </svg>
-
-    {/* Rotating spice elements */}
-    <div className="absolute top-1/4 left-1/4 opacity-20">
-      <div 
-        className="w-16 h-16 animate-spin"
-        style={{ animation: 'spin 20s linear infinite' }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-200 to-orange-200 rounded-full opacity-40 blur-sm" />
-        <div className="absolute top-2 left-2 w-3 h-3 bg-white rounded-full opacity-60" />
-        <div className="absolute bottom-2 right-2 w-2 h-2 bg-yellow-200 rounded-full opacity-50" />
+        ))}
       </div>
-    </div>
 
-    <div className="absolute top-3/4 right-1/4 opacity-20">
-      <div 
-        className="w-12 h-12 animate-spin"
-        style={{ animation: 'spin 15s linear infinite reverse' }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-l from-yellow-200 to-amber-200 rounded-full opacity-40 blur-sm" />
-        <div className="absolute top-1 left-1 w-2 h-2 bg-white rounded-full opacity-60" />
-        <div className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-orange-200 rounded-full opacity-50" />
-      </div>
-    </div>
-
-    {/* Elegant corner decorations */}
-    <div className="absolute top-8 left-8 opacity-25">
-      <div className="relative w-20 h-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-white to-yellow-100 rounded-full opacity-30 blur-md" />
-        <div className="absolute top-4 left-4 w-12 h-12 border border-white rounded-full opacity-40" />
-        <div className="absolute top-6 left-6 w-8 h-8 bg-gradient-to-r from-amber-100 to-orange-100 rounded-full opacity-50" />
-      </div>
-    </div>
-
-    <div className="absolute top-8 right-8 opacity-25">
-      <div className="relative w-20 h-20">
-        <div className="absolute inset-0 bg-gradient-to-bl from-white to-yellow-100 rounded-full opacity-30 blur-md" />
-        <div className="absolute top-4 left-4 w-12 h-12 border border-white rounded-full opacity-40" />
-        <div className="absolute top-6 left-6 w-8 h-8 bg-gradient-to-l from-amber-100 to-orange-100 rounded-full opacity-50" />
-      </div>
-    </div>
-
-    <div className="absolute bottom-8 left-8 opacity-25">
-      <div className="relative w-16 h-16">
-        <div className="absolute inset-0 bg-gradient-to-tr from-white to-yellow-100 rounded-full opacity-30 blur-md" />
-        <div className="absolute top-2 left-2 w-12 h-12 border border-white rounded-full opacity-40" />
-        <div className="absolute top-4 left-4 w-8 h-8 bg-gradient-to-r from-amber-100 to-orange-100 rounded-full opacity-50" />
-      </div>
-    </div>
-
-    <div className="absolute bottom-8 right-8 opacity-25">
-      <div className="relative w-16 h-16">
-        <div className="absolute inset-0 bg-gradient-to-tl from-white to-yellow-100 rounded-full opacity-30 blur-md" />
-        <div className="absolute top-2 left-2 w-12 h-12 border border-white rounded-full opacity-40" />
-        <div className="absolute top-4 left-4 w-8 h-8 bg-gradient-to-l from-amber-100 to-orange-100 rounded-full opacity-50" />
-      </div>
-    </div>
-
-    {/* Subtle aromatic waves */}
-    <div className="absolute inset-0 opacity-10">
-      {[...Array(5)].map((_, i) => (
+      {/* Premium spice dust effect */}
+      <div className="absolute inset-0 opacity-8">
         <div
-          key={`wave-${i}`}
-          className="absolute w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"
+          className="w-full h-full bg-gradient-radial from-yellow-100 via-transparent to-transparent"
           style={{
-            top: `${20 + i * 15}%`,
-            animation: `wave ${4 + i}s ease-in-out infinite`,
-            animationDelay: `${i * 0.5}s`
+            background: 'radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(255, 165, 0, 0.08) 0%, transparent 50%)'
           }}
         />
-      ))}
-    </div>
+      </div>
 
-    {/* Premium spice dust effect */}
-    <div className="absolute inset-0 opacity-8">
-      <div 
-        className="w-full h-full bg-gradient-radial from-yellow-100 via-transparent to-transparent"
-        style={{
-          background: 'radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(255, 165, 0, 0.08) 0%, transparent 50%)'
-        }}
-      />
-    </div>
-
-    <style jsx>{`
+      <style jsx>{`
       @keyframes float {
         0%, 100% { transform: translateY(0px) translateX(0px); }
         25% { transform: translateY(-10px) translateX(5px); }
@@ -411,15 +411,15 @@ const Home = () => {
         to { transform: rotate(360deg); }
       }
     `}</style>
-  </div>
-);
+    </div>
+  );
 
   // Floating spice particles component
   const FloatingSpices = () => {
     return (
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(15)].map((_, i) => (
-          <div 
+          <div
             key={i}
             className="absolute rounded-full animate-float"
             style={{
@@ -508,7 +508,7 @@ const Home = () => {
           animation: rotate3d 60s linear infinite;
         }
       `}</style>
-      
+
       {/* Offer Alert Banner */}
       {showOfferBanner && (
         <div className="relative bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white py-3 px-4 overflow-hidden">
@@ -519,7 +519,7 @@ const Home = () => {
                 <path fillRule="evenodd" d="M12.395 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" clipRule="evenodd" />
               </svg>
               <span className="font-bold text-sm md:text-base">
-                🎉 LIMITED TIME OFFER: Get 20% OFF on bulk orders above ₹5000! 
+                🎉 LIMITED TIME OFFER: Get 20% OFF on bulk orders above ₹5000!
               </span>
               <span className="hidden md:inline-block text-yellow-200 font-medium">
                 Use code: BULK20
@@ -531,7 +531,7 @@ const Home = () => {
                 <span className="text-xs font-medium">Ends Soon!</span>
               </div>
             </div>
-            <button 
+            <button
               onClick={() => setShowOfferBanner(false)}
               className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white/80 hover:text-white transition-colors"
             >
@@ -540,7 +540,7 @@ const Home = () => {
               </svg>
             </button>
           </div>
-          
+
           {/* Animated background elements */}
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
             <div className="absolute top-1 left-1/4 w-2 h-2 bg-yellow-300 rounded-full animate-bounce"></div>
@@ -550,14 +550,14 @@ const Home = () => {
           </div>
         </div>
       )}
-      
+
       {/* Hero Banner */}
       <div ref={heroRef} className="relative bg-gradient-to-br from-emerald-900 via-green-800 to-emerald-900 text-white overflow-hidden min-h-screen">
         {/* Enhanced background with floating spices and kolam pattern */}
         <div className="spice-video-bg" />
         <FloatingSpices />
         <KolamPattern />
-        
+
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 lg:py-32 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -570,14 +570,14 @@ const Home = () => {
                   சுவையான மசாலாப் பொருட்கள்
                 </span>
               </h1>
-              
+
               <p className="text-lg md:text-xl text-emerald-100 max-w-xl">
-                100% pure spices sourced directly from Indian farms. Experience the bold, 
+                100% pure spices sourced directly from Indian farms. Experience the bold,
                 authentic flavors of traditional Indian cuisine.
               </p>
-              
+
               <div className="flex flex-wrap gap-4">
-                <button 
+                <button
                   onClick={() => document.getElementById('popular-products').scrollIntoView({ behavior: 'smooth' })}
                   className="px-8 py-3 bg-white text-emerald-800 font-bold rounded-xl shadow-lg hover:bg-emerald-50 transition-colors transform hover:scale-105 flex items-center"
                 >
@@ -586,7 +586,7 @@ const Home = () => {
                     <path fillRule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </button>
-                <button 
+                <button
                   onClick={() => setBulkModalOpen(true)}
                   className="px-8 py-3 bg-gradient-to-r from-yellow-500 to-yellow-400 text-emerald-900 font-bold rounded-xl shadow-lg hover:from-yellow-600 hover:to-yellow-500 transition-colors transform hover:scale-105 flex items-center"
                 >
@@ -597,7 +597,7 @@ const Home = () => {
                   </svg>
                 </button>
               </div>
-              
+
               <div className="flex flex-wrap gap-6 mt-8">
                 <div className="flex items-center">
                   <div className="bg-emerald-700/30 p-2 rounded-lg">
@@ -607,7 +607,7 @@ const Home = () => {
                   </div>
                   <span className="ml-3 text-emerald-100">No Artificial Preservatives</span>
                 </div>
-                
+
                 <div className="flex items-center">
                   <div className="bg-emerald-700/30 p-2 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -618,12 +618,12 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex justify-center">
               <div className="relative w-full max-w-lg">
                 <div className="absolute -top-8 -right-8 w-56 h-56 bg-yellow-400 rounded-full opacity-10 blur-3xl"></div>
                 <div className="absolute -bottom-8 -left-8 w-56 h-56 bg-emerald-500 rounded-full opacity-10 blur-3xl"></div>
-                
+
                 <div className="relative grid grid-cols-2 gap-5">
                   <div className="spice-jar bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 shadow-2xl transform rotate-3">
                     <div className="bg-gradient-to-br from-emerald-800 to-emerald-900 border-2 border-emerald-700/50 rounded-xl w-full h-64 flex items-center justify-center overflow-hidden">
@@ -639,7 +639,7 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="spice-jar bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 shadow-2xl transform -rotate-2 mt-12">
                     <div className="bg-gradient-to-br from-amber-800 to-amber-900 border-2 border-amber-700/50 rounded-xl w-full h-64 flex items-center justify-center overflow-hidden">
                       <div className="bg-amber-900/50 w-32 h-40 rounded-lg absolute top-4 left-4 transform rotate-6"></div>
@@ -660,7 +660,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Kolam Divider */}
       <div className="relative h-12 bg-emerald-50 overflow-hidden">
         <div className="absolute inset-0 flex justify-center">
@@ -674,44 +674,43 @@ const Home = () => {
           </svg>
         </div>
       </div>
-      
-      /* Popular Products Section */
-        <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" id="popular-products">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Popular Products</h2>
-            <p className="text-xl text-emerald-600 font-medium mb-2">"Bold, Flavorful & Delicious"</p>
-            <p className="text-lg text-gray-600">Our customers love these premium spices</p>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {popularProducts.map((product) => (
-          <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-            <div className="relative h-48">
-              <img 
-            src={product.image} 
-            alt={product.name}
-            loading="lazy"
-            width={500}
-            height={300}
-            className="w-full h-full object-cover"
-              />
-              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center text-sm font-medium">
-            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
-            {product.rating}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" id="popular-products">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900">Popular Products</h2>
+          <p className="text-xl text-emerald-600 font-medium mb-2">"Bold, Flavorful & Delicious"</p>
+          <p className="text-lg text-gray-600">Our customers love these premium spices</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {popularProducts.map((product) => (
+            <div key={product.id} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="relative h-48">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  loading="lazy"
+                  width={500}
+                  height={300}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center text-sm font-medium">
+                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" />
+                  {product.rating}
+                </div>
+                <div className="absolute top-4 left-4 bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">
+                  {product.weight}
+                </div>
               </div>
-              <div className="absolute top-4 left-4 bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">
-            {product.weight}
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-900">{product.name}</h3>
-              <p className="text-gray-600 text-sm mt-2">{product.description}</p>
-              <div className="mt-4 flex items-center justify-between">
-            <div>
-              <span className="text-2xl font-bold text-green-600">{formatINR(product.price)}</span>
-              <p className="text-xs text-gray-500">{formatINR(product.pricePerKg)}/kg</p>
-            </div>
-            {/* <button 
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900">{product.name}</h3>
+                <p className="text-gray-600 text-sm mt-2">{product.description}</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <div>
+                    <span className="text-2xl font-bold text-green-600">{formatINR(product.price)}</span>
+                    <p className="text-xs text-gray-500">{formatINR(product.pricePerKg)}/kg</p>
+                  </div>
+                  {/* <button 
               className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-lg font-medium hover:from-green-600 hover:to-emerald-600 transition-all flex items-center"
               onClick={() => addToCart(product)}
               aria-label={`Buy ${product.name} now`}
@@ -719,24 +718,24 @@ const Home = () => {
               <ShoppingBag className="w-4 h-4 mr-2" />
               Buy Now
             </button> */}
+                </div>
               </div>
             </div>
-          </div>
-            ))}
-          </div>
+          ))}
+        </div>
 
-          <div className="text-center mt-12">
-            <button 
-          className="bg-white/80 backdrop-blur-sm text-gray-900 px-8 py-3 rounded-2xl font-semibold text-lg border-2 border-green-200 hover:border-green-300 hover:bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-          onClick={() => window.location.href = '/products'}
-          aria-label="View all products" id='products'
-            >
-          View All Products
-            </button>
-          </div>
-        </section>
-        
-        {/* Kolam Divider */}
+        <div className="text-center mt-12">
+          <button
+            className="bg-white/80 backdrop-blur-sm text-gray-900 px-8 py-3 rounded-2xl font-semibold text-lg border-2 border-green-200 hover:border-green-300 hover:bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            onClick={() => window.location.href = '/products'}
+            aria-label="View all products" id='products'
+          >
+            View All Products
+          </button>
+        </div>
+      </section>
+
+      {/* Kolam Divider */}
       <div className="relative h-12 bg-emerald-50 overflow-hidden">
         <div className="absolute inset-0 flex justify-center">
           <svg viewBox="0 0 100 10" className="w-full h-full">
@@ -749,12 +748,12 @@ const Home = () => {
           </svg>
         </div>
       </div>
-      
+
       {/* Footer Section */}
-    
-      
+
+
       {bulkModalOpen && <BulkOrderModal />}
-      
+
       {/* Floating WhatsApp button */}
       {/* <a 
         href="https://wa.me/919034598000" 

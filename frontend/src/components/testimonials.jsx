@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import logo from '../assets/logo.png';
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -27,11 +27,11 @@ const Testimonials = () => {
   }, []);
   useEffect(() => {
     if (testimonials.length === 0) return;
-    
+
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length);
     }, 6000);
-    
+
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
@@ -109,7 +109,7 @@ const Testimonials = () => {
         <div className="absolute top-40 right-20 w-24 h-24 bg-green-200 rounded-full opacity-30 animate-bounce"></div>
         <div className="absolute bottom-20 left-20 w-40 h-40 bg-teal-200 rounded-full opacity-15"></div>
         <div className="absolute bottom-40 right-10 w-28 h-28 bg-emerald-300 rounded-full opacity-25"></div>
-        
+
         {/* Spice Icons */}
         <div className="absolute top-32 right-1/4 text-6xl opacity-10 animate-spin-slow">🌶️</div>
         <div className="absolute bottom-32 left-1/4 text-5xl opacity-10">⭐</div>
@@ -141,27 +141,26 @@ const Testimonials = () => {
             {/* Decorative corner elements */}
             <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-emerald-100 to-green-100 rounded-br-full"></div>
             <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-teal-100 to-emerald-100 rounded-tl-full"></div>
-            
+
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial._id}
-                className={`transition-all duration-700 ease-in-out ${
-                  index === activeIndex 
-                    ? 'opacity-100 transform translate-y-0' 
-                    : 'opacity-0 transform translate-y-4 absolute inset-0'
-                }`}
+                className={`transition-all duration-700 ease-in-out ${index === activeIndex
+                  ? 'opacity-100 transform translate-y-0'
+                  : 'opacity-0 transform translate-y-4 absolute inset-0'
+                  }`}
               >
                 {/* Quote Icon */}
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full text-white text-2xl font-bold shadow-lg">
-                    "
+                    <img src={logo} alt="" />
                   </div>
                 </div>
 
                 {/* Rating Stars */}
                 <div className="flex justify-center mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <svg 
+                    <svg
                       key={i}
                       className={`w-8 h-8 mx-1 ${i < testimonial.rating ? 'text-yellow-500' : 'text-gray-300'}`}
                       fill="currentColor"
@@ -184,20 +183,24 @@ const Testimonials = () => {
                     <div className="w-20 h-20 rounded-full bg-gradient-to-r from-emerald-400 to-green-500 p-1 shadow-lg">
                       <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
                         {testimonial.avatar ? (
-                          <img 
+                          <img
                             src={
                               testimonial.avatar.startsWith('http')
                                 ? testimonial.avatar
                                 : `${import.meta.env.VITE_BASE_API}/uploads/${testimonial.avatar}`
                             }
-                            alt={testimonial.name} 
+                            alt={testimonial.name}
                             className="w-16 h-16 rounded-full object-cover"
                           />
                         ) : (
-                          <span className="text-2xl font-bold text-emerald-600">
-                            {testimonial.name.split(' ').map(n => n[0]).join('')}
-                          </span>
+                          <img
+                            src={logo}
+                            alt="Default Logo"
+                            className="w-16 h-16 rounded-full object-contain p-1"
+                          />
                         )}
+
+
                       </div>
                     </div>
                   </div>
@@ -216,8 +219,8 @@ const Testimonials = () => {
                   <p className="text-sm text-gray-500 mb-3">Favorite Products:</p>
                   <div className="flex flex-wrap justify-center gap-2">
                     {testimonial.products.map((product, idx) => (
-                      <span 
-                        key={idx} 
+                      <span
+                        key={idx}
                         className="bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium border border-emerald-200 shadow-sm hover:shadow-md transition-shadow"
                       >
                         {product}
@@ -235,11 +238,10 @@ const Testimonials = () => {
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                  index === activeIndex 
-                    ? 'bg-gradient-to-r from-emerald-500 to-green-500 shadow-lg transform scale-125' 
-                    : 'bg-gray-300 hover:bg-emerald-300'
-                }`}
+                className={`w-4 h-4 rounded-full transition-all duration-300 ${index === activeIndex
+                  ? 'bg-gradient-to-r from-emerald-500 to-green-500 shadow-lg transform scale-125'
+                  : 'bg-gray-300 hover:bg-emerald-300'
+                  }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
@@ -255,7 +257,7 @@ const Testimonials = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          
+
           <button
             onClick={() => setActiveIndex((prev) => (prev + 1) % testimonials.length)}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 text-emerald-600 hover:bg-emerald-50 transition-colors duration-200"

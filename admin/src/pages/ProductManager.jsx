@@ -5,7 +5,11 @@ import { toast } from "react-toastify";
 import Select from "react-select";
 
 const API_BASE = import.meta.env.VITE_BASE_API;
+const IMAGE_BASE = API_BASE.replace("/api", "");
 
+const getFullImageUrl = (imagePath) => {
+  return imagePath ? `${IMAGE_BASE}/${imagePath}` : "https://placehold.co/100x100?text=No+Image";
+};
 const ProductManager = () => {
   const [product, setProduct] = useState({
     _id: null,
@@ -263,7 +267,7 @@ const ProductManager = () => {
                 options={packagingOptions}
                 isMulti
                 value={packagingOptions.filter(opt => product.packaging.includes(opt.value))}
-                onChange={selected => 
+                onChange={selected =>
                   setProduct(prev => ({ ...prev, packaging: selected.map(o => o.value) }))
                 }
                 placeholder="Select packaging types..."
@@ -325,9 +329,8 @@ const ProductManager = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`flex-1 py-3 px-4 rounded font-medium text-white ${
-                isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-700"
-              }`}
+              className={`flex-1 py-3 px-4 rounded font-medium text-white ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-700"
+                }`}
             >
               {isSubmitting
                 ? product._id ? "Updating..." : "Adding..."
@@ -371,8 +374,15 @@ const ProductManager = () => {
                 <tr key={prod._id}>
                   <td className="px-6 py-4 text-sm">{prod.name}</td>
                   <td className="px-6 py-4 text-sm">
-                    {prod.image ? <img src={`${API_BASE}/${prod.image}`} alt={prod.name} className="w-12 h-12 object-cover rounded" /> : "N/A"}
-                  </td>
+                    <img
+                      src={getFullImageUrl(prod.image)}
+                      alt={prod.name}
+                      className="w-12 h-12 object-cover rounded"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://placehold.co/100x100?text=No+Image";
+                      }}
+                    />                  </td>
                   <td className="px-6 py-4 text-sm">{prod.category || "N/A"}</td>
                   <td className="px-6 py-4 text-sm">{(prod.packaging || []).join(", ") || "N/A"}</td>
                   <td className="px-6 py-4 text-sm">{prod.rating ? `${prod.rating} (${prod.reviews || 0} reviews)` : "N/A"}</td>
